@@ -1,4 +1,4 @@
-import javax.swing.JOptionPane;
+// import javax.swing.JOptionPane;
 
 public class Arrays_dos {
     public static void main(String[] args) {
@@ -23,6 +23,5 @@ public class Arrays_dos {
         for (int num : aleatorios) {
             System.out.print(num + " - ");
         }
-
     }
 }
