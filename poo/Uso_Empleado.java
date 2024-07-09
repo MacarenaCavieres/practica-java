@@ -23,10 +23,13 @@ public class Uso_Empleado {
         // empleado3.getSueldo()
         // + "; Contratacion: " + empleado3.getComienzoContrato());
 
-        Empleado[] losEmpleados = new Empleado[3];
+        Empleado[] losEmpleados = new Empleado[5];
         losEmpleados[0] = new Empleado("Angel Diaz", 1000000, 2022, 8, 14);
         losEmpleados[1] = new Empleado("Marta Gomez", 1300000, 2023, 5, 29);
         losEmpleados[2] = new Empleado("Cindy Bryan", 1400000, 2021, 3, 2);
+
+        losEmpleados[3] = new Empleado("Esteban Valdebenito");
+        losEmpleados[4] = new Empleado("jhonatan cifuentes");
 
         for (Empleado empleado : losEmpleados) {
             empleado.setSueldo(5);
@@ -45,6 +48,10 @@ class Empleado {
         GregorianCalendar calendario = new GregorianCalendar(year, mes - 1, dia);
         comienzoContrato = calendario.getTime();
 
+    }
+
+    public Empleado(String nom) {
+        this(nom, 1000000, 2000, 01, 01);
     }
 
     public String getNombre() {
