@@ -8,9 +8,10 @@ public class Pruebas {
 
         trabajador1.setSeccion("RRHH");
 
-        System.out.println(trabajador1.getDatos());
-        System.out.println(trabajador2.getDatos());
-        System.out.println(trabajador3.getDatos());
+        System.out.println(trabajador1.getDatos() + "\n" + trabajador2.getDatos() + "\n" + trabajador3.getDatos());
+
+        System.out.println(Empleados.getIdSgte());
+
     }
 }
 
@@ -29,6 +30,10 @@ class Empleados {
 
     public String getDatos() {
         return "Nombre: " + nombre + "; Seccion: " + seccion + "; ID: " + id;
+    }
+
+    public static String getIdSgte() {
+        return "El ID siguiente es " + idSgte;
     }
 
     private final String nombre;
