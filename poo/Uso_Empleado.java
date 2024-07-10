@@ -1,5 +1,6 @@
 package poo;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -26,7 +27,7 @@ public class Uso_Empleado {
         Jefatura jefe_RRHH = new Jefatura("Carlos Diaz", 2_000_000, 2020, 1, 11);
         jefe_RRHH.setIncentivo(300_000);
 
-        System.out.println(jefe_RRHH.getSueldo());
+        // System.out.println(jefe_RRHH.getSueldo());
 
         Empleado[] losEmpleados = new Empleado[7];
         losEmpleados[0] = new Empleado("Angel Diaz", 1000000, 2022, 8, 14);
@@ -43,6 +44,19 @@ public class Uso_Empleado {
 
         jefa_finanzas.setIncentivo(500000);
 
+        System.out.println(jefa_finanzas.tomar_decisiones("dar mas trabajo"));
+
+        Arrays.sort(losEmpleados);
+
+        Empleado director_comercial = new Jefatura("Ximena Gutierrez", 3_400_000, 2014, 7, 30);
+        Comparable ejemplo = new Empleado("Rosario", 2_300_000, 2024, 10, 22);
+        if (director_comercial instanceof Empleado) {
+            System.out.println("Es de tipo jefatura");
+        }
+        if (ejemplo instanceof Comparable) {
+            System.out.println("Implementa la interfaz comparable");
+        }
+
         for (Empleado empleado : losEmpleados) {
             empleado.setSueldo(5);
             System.out.println("Nombre: " + empleado.getNombre() + " ID: " + empleado.getId() + "; Sueldo: " +
@@ -54,7 +68,7 @@ public class Uso_Empleado {
 
 }
 
-class Empleado {
+class Empleado implements Comparable {
     public Empleado(String nom, double sue, int year, int mes, int dia) {
         nombre = nom;
         sueldo = sue;
@@ -62,7 +76,6 @@ class Empleado {
         comienzoContrato = calendario.getTime();
         id = idSgte;
         idSgte++;
-
     }
 
     public Empleado(String nom) {
@@ -88,7 +101,18 @@ class Empleado {
     public void setSueldo(double porcentaje) {
         double aumento = sueldo * porcentaje / 100;
         sueldo += aumento;
+    }
 
+    public int compareTo(Object miObj) {
+        Empleado another = (Empleado) miObj;
+        if (this.sueldo < another.sueldo) {
+            return -1;
+        }
+        if (this.sueldo > another.sueldo) {
+            return 1;
+        }
+
+        return 0;
     }
 
     private String nombre;
@@ -99,7 +123,7 @@ class Empleado {
 
 }
 
-class Jefatura extends Empleado {
+class Jefatura extends Empleado implements Jefes {
     public Jefatura(String nom, double sue, int year, int mes, int dia) {
         super(nom, sue, year, mes, dia);
     }
@@ -111,6 +135,10 @@ class Jefatura extends Empleado {
     public double getSueldo() {
         double sueldoJefe = super.getSueldo();
         return sueldoJefe + incentivo;
+    }
+
+    public String tomar_decisiones(String decision) {
+        return "Un miembro de la direccion ha tomado la decision de " + decision;
     }
 
     private double incentivo;
