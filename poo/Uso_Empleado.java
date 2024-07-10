@@ -39,9 +39,13 @@ public class Uso_Empleado {
         losEmpleados[5] = jefe_RRHH; // polimorfismo
         losEmpleados[6] = new Jefatura("Maria Fuentes", 2500_000, 2023, 11, 10);
 
+        Jefatura jefa_finanzas = (Jefatura) losEmpleados[6];
+
+        jefa_finanzas.setIncentivo(500000);
+
         for (Empleado empleado : losEmpleados) {
             empleado.setSueldo(5);
-            System.out.println("Nombre: " + empleado.getNombre() + "ID: " + empleado.getId() + "; Sueldo: " +
+            System.out.println("Nombre: " + empleado.getNombre() + " ID: " + empleado.getId() + "; Sueldo: " +
                     empleado.getSueldo()
                     + "; Contratacion: " + empleado.getComienzoContrato());
         }
@@ -110,4 +114,10 @@ class Jefatura extends Empleado {
     }
 
     private double incentivo;
+}
+
+class Director extends Jefatura {
+    public Director(String nom, double sue, int year, int mes, int dia) {
+        super(nom, sue, year, mes, dia);
+    }
 }
